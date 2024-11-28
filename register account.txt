@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:disabled {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <input type="text" id="fullName" placeholder="Full Name"><br>
+            <div id="fullNameError" class="error"></div>
+            
+            <input type="password" id="password" placeholder="Password"><br>
+            <div id="passwordError" class="error"></div>
+            
+            <input type="password" id="confirmPassword" placeholder="Confirm Password"><br>
+            <div id="confirmPasswordError" class="error"></div>
+            
+            <input type="email" id="email" placeholder="Email"><br>
+            <div id="emailError" class="error"></div>
+            
+            <input type="text" id="phoneNumber" placeholder="Phone Number"><br>
+            <div id="phoneError" class="error"></div>
+            
+            <input type="text" id="zipCode" placeholder="Zip Code"><br>
+            <div id="zipError" class="error"></div>
+            
+            <input type="text" id="cardNumber" placeholder="Card Number"><br>
+            <div id="cardError" class="error"></div>
+            
+            <input type="text" id="expDate" placeholder="Expiration Date (MM/YY)"><br>
+            <div id="expDateError" class="error"></div>
+            
+            <button type="button" onclick="validateForm()">Register</button>
+            <button type="button" onclick="clearForm()">Clear Form</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            // Clear all previous errors
+            document.querySelectorAll('.error').forEach(e => e.textContent = '');
+            
+            // Get form values
+            const fullName = document.getElementById('fullName').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const email = document.getElementById('email').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const zipCode = document.getElementById('zipCode').value;
+            const cardNumber = document.getElementById('cardNumber').value;
+            const expDate = document.getElementById('expDate').value;
+            
+            let valid = true;
+            
+            // Validate full name
+            if (fullName.length < 4) {
+                document.getElementById('fullNameError').textContent = 'User name must be at least 4 characters';
+                valid = false;
+            }
+            
+            // Validate password
+            if (password.length < 4) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 4 characters';
+                valid = false;
+            }
+            
+            // Validate confirm password
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                valid = false;
+            }
+            
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Invalid email format';
+                valid = false;
+            }
+            
+            // Validate phone number
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phoneNumber)) {
+                document.getElementById('phoneError').textContent = 'Invalid phone number';
+                valid = false;
+            }
+            
+            // Validate zip code
+            const zipRegex = /^[0-9]{5}$/;
+            if (!zipRegex.test(zipCode)) {
+                document.getElementById('zipError').textContent = 'Invalid Zip Code';
+                valid = false;
+            }
+            
+            // Validate card number
+            const cardRegex = /^[0-9]{16}$/;
+            if (!cardRegex.test(cardNumber)) {
+                document.getElementById('cardError').textContent = 'Invalid card number format';
+                valid = false;
+            }
+            
+            // Validate expiration date
+            const expDateRegex = /^(0[1-9]|1[0-2])\/[0-9]{2}$/;
+            if (!expDateRegex.test(expDate)) {
+                document.getElementById('expDateError').textContent = 'Invalid date format';
+                valid = false;
+            }
+            
+            if (valid) {
+                alert('Registration successful!');
+            }
+        }
+        
+        function clearForm() {
+            document.getElementById('registrationForm').reset();
+            document.querySelectorAll('.error').forEach(e => e.textContent = '');
+        }
+    </script>
+</body>
+</html>

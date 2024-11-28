@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .weather-info {
+            margin-top: 20px;
+        }
+        .weather-info img {
+            width: 50px;
+        }
+        .forecast {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .forecast div {
+            text-align: center;
+        }
+        .forecast img {
+            width: 30px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <div>
+            <input type="text" id="city" placeholder="Enter city name">
+            <button onclick="getWeather()">SEARCH</button>
+        </div>
+        <div class="weather-info" id="weatherInfo">
+            <h2>Paris</h2>
+            <div>
+                <img src="https://example.com/cloudy-icon.png" alt="Weather Icon">
+                <p>Temperature: <span id="temp">12°C</span></p>
+                <p>Humidity: <span id="humidity">66%</span></p>
+                <p>Wind: <span id="wind">4.3 m/s</span></p>
+            </div>
+            <div class="forecast">
+                <div>
+                    <p>Mon</p>
+                    <img src="https://example.com/sunny-icon.png" alt="Sunny">
+                    <p>10-20°C</p>
+                </div>
+                <div>
+                    <p>Tue</p>
+                    <img src="https://example.com/rainy-icon.png" alt="Rainy">
+                    <p>8-16°C</p>
+                </div>
+   
+            </div>
+        </div>
+        <div class="footer">
+            <p>Made with ❤️ by GOTEZ254</p>
+            <p>Hosted on GitHub and Netlify</p>
+            <p>Designed in Figma</p>
+        </div>
+    </div>
+
+    <script>
+        function getWeather() {
+            const city = document.getElementById('city').value;
+            // Placeholder for fetching and displaying weather data
+            alert('Weather data for ' + city);
+        }
+    </script>
+</body>
+</html>
